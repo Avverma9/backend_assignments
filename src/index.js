@@ -1,17 +1,20 @@
-const express=require('express');
+const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
-const route = require('./router/route');
-const app=express();
 
+const app = express();
+const port = process.env.PORT || 5000;
+
+app.use(cors());
 app.use(express.json());
 
-mongoose.set('strictQuery', false)
-mongoose.connect("mongodb+srv://ankushrai222:Ankushrai222@newproject.tknxizt.mongodb.net/assingmentCompany?retryWrites=true&w=majority", {
-    useNewUrlParser: true,
-}).then( () => console.log("MongoDb is connected"))
-.catch ( err => console.log(err) )
-
-
-app.use('/',route);
-let PORT=3000
-app.listen(PORT, () => console.log(`server port is  ${PORT}`));
+app.listen(port, () => {
+  console.log(`Server is running on port: ${port}`);
+});
+const uri = 'mongoURI';
+mongoose.connect("mongodb+srv://Avverma:Avverma95766@avverma.2g4orpk.mongodb.net/mernstack",
+{ useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
+const connection = mongoose.connection;
+connection.once('open', () => {
+  console.log("MongoDB database connection established successfully");
+});

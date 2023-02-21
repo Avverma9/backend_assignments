@@ -1,5 +1,5 @@
 
-const studentModel = require("../model/studentModel")
+const studentModel = require("../model/userSchema")
 
 const createAndAddStudent = async function(req,res){
     try{
